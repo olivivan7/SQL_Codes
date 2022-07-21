@@ -1,0 +1,27 @@
+CREATE DATABASE bdhs_project GO
+USE bdhs_project GO
+
+
+CREATE TABLE stock_prices(
+	Symbol VARCHAR(5) NOT NULL PRIMARY KEY UNIQUE,
+	Trading_date DATE NOT NULL,
+    Open DOUBLE NOT NULL,
+    Close DOUBLE NOT NULL,
+    Low DOUBLE NOT NULL,
+    High DOUBLE NOT NULL,
+    Volume INT NOT NULL
+)
+GO
+
+BULK INSERT stock_prices
+FROM 'C:\Users\olivi\OneDrive\Área de Trabalho\2 - PURDUE DATA ENGINEER POST GRADUATE PROGRAM\Big Data Hadoop and Spark Developer\stock_prices.csv'
+WITH (
+	FORMAT ='CSV',
+	FIRSTROW = 2,
+	FIELDTERMINATOR = ',',
+	ROWTERMINATOR = '\n'
+)
+GO
+
+SELECT * FROM bdhs_project.stock_prices GO
+
